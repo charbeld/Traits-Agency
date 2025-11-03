@@ -195,57 +195,56 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // Handle client-side submission to n8n so GitHub Pages can serve the site without backend code.
-    const castingForm = document.getElementById('casting-form');
     const N8N_WEBHOOK_URL = 'https://4nlsyfz1.rpcl.app/webhook/88eafe9d-ad03-4a66-9622-0519ef7f92b6';
+    const castingForm = document.getElementById('casting-form');
 
     if (!castingForm) {
       console.warn('Casting form not found on the page.');
-      return;
-    }
+    } else {
+      const statusMessage = castingForm.querySelector('.form-message');
+      const submitButton = castingForm.querySelector('button[type="submit"]');
+      const defaultLabel = submitButton.dataset.defaultLabel || submitButton.textContent;
 
-    const statusMessage = castingForm.querySelector('.form-message');
-    const submitButton = castingForm.querySelector('button[type="submit"]');
-    const defaultLabel = submitButton.dataset.defaultLabel || submitButton.textContent;
+      castingForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        statusMessage.textContent = '';
+        statusMessage.classList.remove('success', 'error');
 
-    castingForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      statusMessage.textContent = '';
-      statusMessage.classList.remove('success', 'error');
-
-      if (!castingForm.checkValidity()) {
-        statusMessage.textContent = 'Please complete the required fields.';
-        statusMessage.classList.add('error');
-        return;
-      }
-
-      submitButton.disabled = true;
-      submitButton.textContent = 'Sending...';
-
-      const formData = new FormData(castingForm);
-      formData.append('submittedAt', new Date().toISOString());
-
-      try {
-        const response = await fetch(N8N_WEBHOOK_URL, {
-          method: 'POST',
-          body: formData,
-        });
-
-        if (!response.ok) {
-          throw new Error(`Request failed with status ${response.status}`);
+        if (!castingForm.checkValidity()) {
+          statusMessage.textContent = 'Please complete the required fields.';
+          statusMessage.classList.add('error');
+          return;
         }
 
-        castingForm.reset();
-        statusMessage.textContent = 'Submission received. Our team will be in touch.';
-        statusMessage.classList.add('success');
-      } catch (error) {
-        console.error('Form submission error', error);
-        statusMessage.textContent = 'Something went wrong. Please try again or email hello@spotlightcasting.com.';
-        statusMessage.classList.add('error');
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = defaultLabel;
-      }
-    });
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+
+        const formData = new FormData(castingForm);
+        formData.append('submittedAt', new Date().toISOString());
+
+        try {
+          const response = await fetch(N8N_WEBHOOK_URL, {
+            method: 'POST',
+            body: formData,
+          });
+
+          if (!response.ok) {
+            throw new Error(`Request failed with status ${response.status}`);
+          }
+
+          castingForm.reset();
+          statusMessage.textContent = 'Submission received. Our team will be in touch.';
+          statusMessage.classList.add('success');
+        } catch (error) {
+          console.error('Form submission error', error);
+          statusMessage.textContent = 'Something went wrong. Please try again or email hello@spotlightcasting.com.';
+          statusMessage.classList.add('error');
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = defaultLabel;
+        }
+      });
+    }
   </script>
 </body>
 </html>
