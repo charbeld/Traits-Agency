@@ -354,6 +354,123 @@ nav .cta:focus {
   grid-column: 1 / -1;
 }
 
+.form-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.file-dropzone {
+  position: relative;
+  padding: 1.25rem;
+  border: 2px dashed var(--border);
+  border-radius: 0.8rem;
+  background: var(--surface-muted);
+  display: grid;
+  gap: 0.5rem;
+  place-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.file-dropzone:hover,
+.file-dropzone:focus-visible {
+  border-color: var(--accent);
+  background: rgba(26, 115, 232, 0.05);
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+}
+
+.file-dropzone.is-dragover {
+  border-color: var(--accent);
+  background: rgba(26, 115, 232, 0.08);
+}
+
+.file-dropzone-trigger {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.file-dropzone-trigger:hover,
+.file-dropzone-trigger:focus-visible {
+  text-decoration: none;
+}
+
+.file-dropzone-hint {
+  margin: 0;
+  color: var(--fg-muted);
+  font-size: 0.95rem;
+}
+
+.file-dropzone-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.file-dropzone-files {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.file-dropzone-feedback {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+.file-dropzone-feedback.error {
+  color: #d03838;
+}
+
+.file-dropzone-file {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0.8rem;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  font-size: 0.95rem;
+}
+
+.file-dropzone-file span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-dropzone-remove {
+  appearance: none;
+  border: 0;
+  background: none;
+  color: var(--fg-muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+.file-dropzone-remove:hover,
+.file-dropzone-remove:focus-visible {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
 .form-actions {
   margin-top: 1.8rem;
   display: flex;

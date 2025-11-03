@@ -212,10 +212,16 @@
               <input type="url" name="portfolio" placeholder="https://">
             </label>
 
-            <label class="full-width">
+            <div class="full-width form-upload">
               <span>Headshot or reel</span>
-              <input type="file" name="attachment" accept=".jpg,.jpeg,.png,.pdf,.mp4,.mov">
-            </label>
+              <div class="file-dropzone" tabindex="0" role="button" aria-label="Add files by drag and drop or browse to upload">
+                <p>Drag & drop files here or <button type="button" class="file-dropzone-trigger">browse</button></p>
+                <p class="file-dropzone-hint">Attach multiple files. Accepted formats: JPG, PNG, PDF, MP4, MOV.</p>
+                <input class="file-dropzone-input" type="file" name="attachment" accept=".jpg,.jpeg,.png,.pdf,.mp4,.mov" multiple aria-hidden="true" tabindex="-1">
+              </div>
+              <ul class="file-dropzone-files" aria-live="polite"></ul>
+              <p class="file-dropzone-feedback" aria-live="polite"></p>
+            </div>
           </fieldset>
 
           <div class="form-actions">
@@ -255,6 +261,206 @@
       const statusMessage = castingForm.querySelector('.form-message');
       const submitButton = castingForm.querySelector('button[type="submit"]');
       const defaultLabel = submitButton.dataset.defaultLabel || submitButton.textContent;
+      const fileDropzone = castingForm.querySelector('.file-dropzone');
+      const fileInput = castingForm.querySelector('.file-dropzone-input');
+      const fileList = castingForm.querySelector('.file-dropzone-files');
+      const fileTrigger = castingForm.querySelector('.file-dropzone-trigger');
+      const fileFeedback = castingForm.querySelector('.file-dropzone-feedback');
+
+      const setFeedbackMessage = (message = '', isError = false) => {
+        if (!fileFeedback) return;
+        fileFeedback.textContent = message;
+        if (message) {
+          fileFeedback.classList.toggle('error', Boolean(isError));
+        } else {
+          fileFeedback.classList.remove('error');
+        }
+      };
+
+      if (fileDropzone && fileInput) {
+        const acceptedTokens = fileInput.accept
+          .split(',')
+          .map((token) => token.trim().toLowerCase())
+          .filter(Boolean);
+
+        const formatBytes = (bytes) => {
+          if (!Number.isFinite(bytes) || bytes <= 0) return '0 KB';
+          const units = ['bytes', 'KB', 'MB', 'GB'];
+          let value = bytes;
+          let unitIndex = 0;
+          while (value >= 1024 && unitIndex < units.length - 1) {
+            value /= 1024;
+            unitIndex += 1;
+          }
+          const precision = unitIndex === 0 ? 0 : 1;
+          return `${value.toFixed(precision)} ${units[unitIndex]}`;
+        };
+
+        const renderFiles = () => {
+          if (!fileList) return;
+          fileList.innerHTML = '';
+
+          Array.from(fileInput.files).forEach((file, index) => {
+            const listItem = document.createElement('li');
+            listItem.className = 'file-dropzone-file';
+
+            const fileName = document.createElement('span');
+            fileName.textContent = `${file.name} (${formatBytes(file.size)})`;
+
+            const removeButton = document.createElement('button');
+            removeButton.type = 'button';
+            removeButton.className = 'file-dropzone-remove';
+            removeButton.dataset.index = String(index);
+            removeButton.textContent = 'Remove';
+
+            listItem.append(fileName, removeButton);
+            fileList.append(listItem);
+          });
+
+          if (fileInput.files.length === 0) {
+            setFeedbackMessage('');
+          }
+        };
+
+        const isAcceptedFile = (file) => {
+          if (acceptedTokens.length === 0) return true;
+          const lowerName = file.name.toLowerCase();
+          const mimeType = file.type.toLowerCase();
+          return acceptedTokens.some((token) => {
+            if (token.startsWith('.')) {
+              return lowerName.endsWith(token);
+            }
+            return mimeType === token;
+          });
+        };
+
+        const addFilesToInput = (incomingFiles) => {
+          if (typeof DataTransfer === 'undefined') {
+            setFeedbackMessage('Drag and drop is not supported in this browser. Please use the browse button instead.', true);
+            return;
+          }
+
+          const current = new DataTransfer();
+          Array.from(fileInput.files).forEach((file) => current.items.add(file));
+
+          const rejected = [];
+          Array.from(incomingFiles).forEach((file) => {
+            if (isAcceptedFile(file)) {
+              current.items.add(file);
+            } else {
+              rejected.push(file.name);
+            }
+          });
+
+          fileInput.files = current.files;
+          renderFiles();
+
+          if (rejected.length) {
+            setFeedbackMessage(`Skipped unsupported files: ${rejected.join(', ')}`, true);
+          } else if (incomingFiles.length) {
+            setFeedbackMessage(`${incomingFiles.length} file${incomingFiles.length > 1 ? 's' : ''} ready to send.`);
+          }
+        };
+
+        fileDropzone.addEventListener('click', (event) => {
+          if (!(event.target instanceof Element)) return;
+          if (event.target.closest('.file-dropzone-trigger')) return;
+          fileInput.click();
+        });
+
+        fileDropzone.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            fileInput.click();
+          }
+        });
+
+        if (fileTrigger) {
+          fileTrigger.addEventListener('click', (event) => {
+            event.preventDefault();
+            fileInput.click();
+          });
+        }
+
+        const preventDefaults = (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+        };
+
+        ['dragenter', 'dragover'].forEach((type) => {
+          fileDropzone.addEventListener(type, (event) => {
+            preventDefaults(event);
+            fileDropzone.classList.add('is-dragover');
+            setFeedbackMessage('Drop files to add them.');
+          });
+        });
+
+        ['dragleave', 'dragend'].forEach((type) => {
+          fileDropzone.addEventListener(type, (event) => {
+            preventDefaults(event);
+            fileDropzone.classList.remove('is-dragover');
+            if (fileInput.files.length === 0) {
+              setFeedbackMessage('');
+            }
+          });
+        });
+
+        fileDropzone.addEventListener('drop', (event) => {
+          preventDefaults(event);
+          fileDropzone.classList.remove('is-dragover');
+          if (event.dataTransfer?.files?.length) {
+            addFilesToInput(event.dataTransfer.files);
+          }
+        });
+
+        fileInput.addEventListener('change', () => {
+          renderFiles();
+          if (fileInput.files.length) {
+            setFeedbackMessage(`${fileInput.files.length} file${fileInput.files.length > 1 ? 's' : ''} ready to send.`);
+          } else {
+            setFeedbackMessage('');
+          }
+        });
+
+        if (fileList) {
+          fileList.addEventListener('click', (event) => {
+            const target = event.target;
+            if (!(target instanceof HTMLButtonElement)) return;
+            if (!target.classList.contains('file-dropzone-remove')) return;
+
+            const index = Number.parseInt(target.dataset.index || '', 10);
+            if (Number.isNaN(index)) return;
+
+            if (typeof DataTransfer === 'undefined') {
+              setFeedbackMessage('Removing files is not supported in this browser. Clear the selection using the browse dialog.', true);
+              return;
+            }
+
+            const updated = new DataTransfer();
+            Array.from(fileInput.files).forEach((file, fileIndex) => {
+              if (fileIndex !== index) {
+                updated.items.add(file);
+              }
+            });
+            fileInput.files = updated.files;
+            renderFiles();
+
+            if (fileInput.files.length) {
+              setFeedbackMessage(`${fileInput.files.length} file${fileInput.files.length > 1 ? 's' : ''} ready to send.`);
+            } else {
+              setFeedbackMessage('');
+            }
+          });
+        }
+
+        castingForm.addEventListener('reset', () => {
+          window.setTimeout(() => {
+            renderFiles();
+            setFeedbackMessage('');
+            fileDropzone.classList.remove('is-dragover');
+          }, 0);
+        });
+      }
 
       castingForm.addEventListener('submit', async (event) => {
         event.preventDefault();
