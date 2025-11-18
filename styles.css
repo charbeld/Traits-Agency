@@ -59,7 +59,7 @@ body {
 }
 
 .brand-logo {
-  width: 160px;
+  width: 200px;
   height: auto;
   display: block;
 }
@@ -200,6 +200,7 @@ nav a {
   text-transform: uppercase;
   font-weight: 600;
   transition: transform 0.2s ease;
+  text-decoration: none;
 }
 
 .btn-primary {
