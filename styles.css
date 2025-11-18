@@ -260,6 +260,15 @@ nav a {
   margin-top: 1.5rem;
 }
 
+.form-grid.two-column {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.form-grid.two-column label {
+  width: 100%;
+}
+
 .form-grid label {
   display: flex;
   flex-direction: column;
@@ -271,7 +280,8 @@ nav a {
 }
 
 .form-grid input,
-.form-grid textarea {
+.form-grid textarea,
+.form-grid select {
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 0.9rem 1rem;
@@ -286,6 +296,19 @@ nav a {
   resize: vertical;
 }
 
+.form-grid input[type='file'] {
+  padding: 0.6rem 1rem;
+}
+
+.checkbox {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.checkbox input {
+  margin-top: 0.4rem;
+}
 .form-footnote {
   margin-top: 1rem;
   font-size: 0.9rem;

@@ -38,30 +38,111 @@
             </p>
 
             <form class="form-grid" action="#" method="post">
+              <div class="form-grid two-column">
+                <label>
+                  Full Name *
+                  <input type="text" name="name" required placeholder="Jordan Stone" />
+                </label>
+                <label>
+                  Date of Birth *
+                  <input type="date" name="dob" required />
+                </label>
+                <label>
+                  Gender *
+                  <input type="text" name="gender" required placeholder="Female / Male / Non-binary" />
+                </label>
+                <label>
+                  Nationality *
+                  <input type="text" name="nationality" required placeholder="Lebanese" />
+                </label>
+                <label>
+                  Contact Number *
+                  <input type="tel" name="phone" required placeholder="+961 12 345 678" />
+                </label>
+                <label>
+                  Email Address *
+                  <input type="email" name="email" required placeholder="name@example.com" />
+                </label>
+                <label>
+                  Current Location / City *
+                  <input type="text" name="location" required placeholder="Beirut, Lebanon" />
+                </label>
+                <label>
+                  Languages Spoken *
+                  <input type="text" name="languages" required placeholder="English, Arabic, French" />
+                </label>
+                <label>
+                  Height *
+                  <input type="text" name="height" required placeholder="175 cm" />
+                </label>
+                <label>
+                  Weight *
+                  <input type="text" name="weight" required placeholder="60 kg" />
+                </label>
+                <label>
+                  Hair Color
+                  <input type="text" name="hair_color" placeholder="Brown" />
+                </label>
+                <label>
+                  Eye Color
+                  <input type="text" name="eye_color" placeholder="Green" />
+                </label>
+                <label>
+                  Clothing Size (Shirt, Pants, Shoes) *
+                  <input type="text" name="clothing_size" required placeholder="M / 32 / 42" />
+                </label>
+                <label>
+                  Distinguishing features
+                  <input type="text" name="features" placeholder="Tattoo on wrist" />
+                </label>
+              </div>
+
               <label>
-                Full name
-                <input type="text" name="name" required placeholder="Jordan Stone" />
+                Special skills
+                <textarea
+                  name="skills"
+                  placeholder="Share any skills: dancing, roller skating, kayaking, etc."
+                ></textarea>
+              </label>
+
+              <label>
+                Upload Photos (Headshot, Full Body) *
+                <input type="file" name="photos" accept="image/*" multiple required />
               </label>
               <label>
-                Email
-                <input type="email" name="email" required placeholder="name@example.com" />
+                Upload Videos (acting reel, performance, social media) *
+                <input type="file" name="videos" accept="video/*" multiple required />
               </label>
               <label>
-                Phone
-                <input type="tel" name="phone" placeholder="+1 123 456 7890" />
-              </label>
-              <label>
-                Location / Availability
-                <input type="text" name="availability" placeholder="New York - available weekdays" />
-              </label>
-              <label>
-                Portfolio / social links
+                Link to Portfolio or Instagram
                 <input type="url" name="portfolio" placeholder="https://instagram.com/yourprofile" />
               </label>
+
               <label>
-                Tell us about your experience
-                <textarea name="experience" placeholder="Share a short story about your past work or goals."></textarea>
+                For veiled women: are you ok to be featured without veil?
+                <select name="veil_preference">
+                  <option value="" selected disabled>Select an option</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
               </label>
+              <label>
+                Are you available for casting calls on short notice?
+                <select name="short_notice">
+                  <option value="" selected disabled>Select an option</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </label>
+
+              <label class="checkbox">
+                <input type="checkbox" name="consent" required />
+                <span>
+                  I agree to be contacted by Traits Agency for casting opportunities and understand my
+                  information will be used solely for agency purposes.
+                </span>
+              </label>
+
               <button type="submit" class="btn btn-primary">Send application</button>
             </form>
 
