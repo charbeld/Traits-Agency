@@ -119,47 +119,20 @@ nav a {
   margin: 0;
 }
 
-.video-section {
-  margin: 3rem auto;
+.hero-actions {
+  margin: 2.5rem auto 4rem;
   width: min(var(--max-width), 92vw);
 }
 
-.video-card {
+.cta-panel {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 2.5rem;
-  box-shadow: var(--shadow);
+  border-radius: 28px;
+  padding: 2rem 2.5rem;
   display: flex;
-  flex-direction: column;
   gap: 1.5rem;
-}
-
-.video-wrapper {
-  width: 100%;
-  position: relative;
-  padding-top: 56.25%;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-
-.video-wrapper iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.video-copy {
-  font-size: 1rem;
-  color: var(--muted);
-  margin: 0;
-}
-
-.actions {
-  display: flex;
-  gap: 1rem;
+  justify-content: center;
+  box-shadow: var(--shadow);
   flex-wrap: wrap;
 }
 
