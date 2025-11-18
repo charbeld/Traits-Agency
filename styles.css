@@ -46,6 +46,18 @@ body {
   display: flex;
   flex-direction: column;
   line-height: 1;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.brand:link,
+.brand:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand:hover {
+  color: inherit;
 }
 
 .brand-mark {
