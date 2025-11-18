@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Apply — Traits Agency</title>
+    <meta
+      name="description"
+      content="Submit an application to Traits Agency to be considered for upcoming talent opportunities."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="top-nav">
+        <div class="brand">
+          <span class="brand-mark">Traits</span>
+          <p class="brand-subtitle">Agency</p>
+        </div>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="apply.html">Apply</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="form-section">
+          <div class="form-card">
+            <p class="eyebrow">Apply now</p>
+            <h1>Tell us your story</h1>
+            <p>
+              Drop your details and a quick note about your availability. We review every profile and
+              respond with curated opportunities.
+            </p>
+
+            <form class="form-grid" action="#" method="post">
+              <label>
+                Full name
+                <input type="text" name="name" required placeholder="Jordan Stone" />
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" required placeholder="name@example.com" />
+              </label>
+              <label>
+                Phone
+                <input type="tel" name="phone" placeholder="+1 123 456 7890" />
+              </label>
+              <label>
+                Location / Availability
+                <input type="text" name="availability" placeholder="New York • available weekdays" />
+              </label>
+              <label>
+                Portfolio / social links
+                <input type="url" name="portfolio" placeholder="https://instagram.com/yourprofile" />
+              </label>
+              <label>
+                Tell us about your experience
+                <textarea name="experience" placeholder="Share a short story about your past work or goals."></textarea>
+              </label>
+              <button type="submit" class="btn btn-primary">Send application</button>
+            </form>
+
+            <p class="form-footnote">
+              Prefer to speak with a producer? <a href="contact.html">Contact us directly.</a>
+            </p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="page-footer">
+        <p>Traits Agency — curated talent from Los Angeles, New York, and beyond.</p>
+        <small>© 2025 Traits Agency. All rights reserved.</small>
+      </footer>
+    </div>
+  </body>
+</html>
