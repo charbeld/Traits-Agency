@@ -32,7 +32,7 @@ body {
 
 .top-nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding: 1.5rem 6vw;
   position: sticky;
@@ -40,6 +40,8 @@ body {
   z-index: 10;
   background: linear-gradient(180deg, rgba(248, 244, 239, 0.9), rgba(248, 244, 239, 0.95));
   border-bottom: 1px solid var(--border);
+  position: relative;
+  min-height: 90px;
 }
 
 .brand,
@@ -51,6 +53,9 @@ body {
   justify-content: center;
   text-decoration: none;
   color: inherit;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .brand-logo {
