@@ -45,9 +45,12 @@ body {
 .brand {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   line-height: 1;
   color: var(--fg);
   text-decoration: none;
+  gap: 0.25rem;
 }
 
 .brand:link,
@@ -61,15 +64,17 @@ body {
 }
 
 .brand-mark {
-  font-family: 'Playfair Display', 'Times New Roman', serif;
-  font-size: 1.5rem;
-  letter-spacing: 0.25em;
+  font-family: 'Prata', 'Playfair Display', 'Times New Roman', serif;
+  font-size: 1.75rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
 }
 
 .brand-subtitle {
-  font-size: 0.9rem;
-  letter-spacing: 0.4em;
+  font-size: 0.8rem;
+  letter-spacing: 0.5em;
   margin: 0;
+  text-transform: uppercase;
 }
 
 nav {
