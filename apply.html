@@ -31,13 +31,13 @@
         <section class="form-section">
           <div class="form-card">
             <p class="eyebrow">Apply now</p>
-            <h1>Tell us your story</h1>
+            <h1>List your Traits</h1>
             <p>
               Drop your details and a quick note about your availability. We review every profile and
               respond with curated opportunities.
             </p>
 
-            <form class="form-grid" action="#" method="post">
+            <form class="form-grid" action="#" method="post" enctype="multipart/form-data">
               <div class="form-grid two-column">
                 <label>
                   Full Name *
@@ -49,11 +49,21 @@
                 </label>
                 <label>
                   Gender *
-                  <input type="text" name="gender" required placeholder="Female / Male / Non-binary" />
+                  <select name="gender" required>
+                    <option value="" disabled selected>Select gender</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                  </select>
                 </label>
                 <label>
                   Nationality *
-                  <input type="text" name="nationality" required placeholder="Lebanese" />
+                  <input
+                    type="text"
+                    name="nationality"
+                    list="nationality-list"
+                    required
+                    placeholder="Start typing to search"
+                  />
                 </label>
                 <label>
                   Contact Number *
@@ -65,12 +75,74 @@
                 </label>
                 <label>
                   Current Location / City *
-                  <input type="text" name="location" required placeholder="Beirut, Lebanon" />
+                  <input
+                    type="text"
+                    name="location"
+                    list="city-list"
+                    required
+                    placeholder="Start typing to search"
+                  />
                 </label>
-                <label>
-                  Languages Spoken *
-                  <input type="text" name="languages" required placeholder="English, Arabic, French" />
-                </label>
+                <div class="multi-select" data-label="Select languages">
+                  <span class="multi-select-label">Languages Spoken *</span>
+                  <div class="multi-select-input" tabindex="0" role="combobox" aria-expanded="false">
+                    <div class="multi-select-tags" aria-live="polite"></div>
+                    <span class="multi-select-placeholder">Choose languages</span>
+                    <span class="multi-select-arrow" aria-hidden="true"></span>
+                  </div>
+                  <div class="multi-select-menu" role="listbox">
+                    <button type="button" data-value="Afrikaans">Afrikaans</button>
+                    <button type="button" data-value="Albanian">Albanian</button>
+                    <button type="button" data-value="Amharic">Amharic</button>
+                    <button type="button" data-value="Arabic">Arabic</button>
+                    <button type="button" data-value="Armenian">Armenian</button>
+                    <button type="button" data-value="Bengali">Bengali</button>
+                    <button type="button" data-value="Bulgarian">Bulgarian</button>
+                    <button type="button" data-value="Burmese">Burmese</button>
+                    <button type="button" data-value="Cantonese">Cantonese</button>
+                    <button type="button" data-value="Croatian">Croatian</button>
+                    <button type="button" data-value="Czech">Czech</button>
+                    <button type="button" data-value="Danish">Danish</button>
+                    <button type="button" data-value="Dutch">Dutch</button>
+                    <button type="button" data-value="English">English</button>
+                    <button type="button" data-value="Estonian">Estonian</button>
+                    <button type="button" data-value="Farsi">Farsi</button>
+                    <button type="button" data-value="Finnish">Finnish</button>
+                    <button type="button" data-value="French">French</button>
+                    <button type="button" data-value="Georgian">Georgian</button>
+                    <button type="button" data-value="German">German</button>
+                    <button type="button" data-value="Greek">Greek</button>
+                    <button type="button" data-value="Hebrew">Hebrew</button>
+                    <button type="button" data-value="Hindi">Hindi</button>
+                    <button type="button" data-value="Hungarian">Hungarian</button>
+                    <button type="button" data-value="Indonesian">Indonesian</button>
+                    <button type="button" data-value="Italian">Italian</button>
+                    <button type="button" data-value="Japanese">Japanese</button>
+                    <button type="button" data-value="Korean">Korean</button>
+                    <button type="button" data-value="Latvian">Latvian</button>
+                    <button type="button" data-value="Lithuanian">Lithuanian</button>
+                    <button type="button" data-value="Malay">Malay</button>
+                    <button type="button" data-value="Mandarin Chinese">Mandarin Chinese</button>
+                    <button type="button" data-value="Norwegian">Norwegian</button>
+                    <button type="button" data-value="Polish">Polish</button>
+                    <button type="button" data-value="Portuguese">Portuguese</button>
+                    <button type="button" data-value="Romanian">Romanian</button>
+                    <button type="button" data-value="Russian">Russian</button>
+                    <button type="button" data-value="Serbian">Serbian</button>
+                    <button type="button" data-value="Somali">Somali</button>
+                    <button type="button" data-value="Spanish">Spanish</button>
+                    <button type="button" data-value="Swahili">Swahili</button>
+                    <button type="button" data-value="Swedish">Swedish</button>
+                    <button type="button" data-value="Tagalog">Tagalog</button>
+                    <button type="button" data-value="Thai">Thai</button>
+                    <button type="button" data-value="Turkish">Turkish</button>
+                    <button type="button" data-value="Ukrainian">Ukrainian</button>
+                    <button type="button" data-value="Urdu">Urdu</button>
+                    <button type="button" data-value="Vietnamese">Vietnamese</button>
+                  </div>
+                  <input type="hidden" name="languages" required />
+                  <span class="field-hint">Select languages one by one. Click × to remove.</span>
+                </div>
                 <label>
                   Height *
                   <input type="text" name="height" required placeholder="175 cm" />
@@ -81,11 +153,21 @@
                 </label>
                 <label>
                   Hair Color
-                  <input type="text" name="hair_color" placeholder="Brown" />
+                  <input
+                    type="text"
+                    name="hair_color"
+                    list="hair-color-list"
+                    placeholder="Select or type"
+                  />
                 </label>
                 <label>
                   Eye Color
-                  <input type="text" name="eye_color" placeholder="Green" />
+                  <input
+                    type="text"
+                    name="eye_color"
+                    list="eye-color-list"
+                    placeholder="Select or type"
+                  />
                 </label>
                 <label>
                   Clothing Size (Shirt, Pants, Shoes) *
@@ -105,14 +187,21 @@
                 ></textarea>
               </label>
 
-              <label>
-                Upload Photos (Headshot, Full Body) *
-                <input type="file" name="photos" accept="image/*" multiple required />
-              </label>
-              <label>
-                Upload Videos (acting reel, performance, social media) *
-                <input type="file" name="videos" accept="video/*" multiple required />
-              </label>
+              <div class="drop-group">
+                <span>Upload Photos (Headshot, Full Body) *</span>
+                <label class="dropzone">
+                  <input type="file" name="photos" accept="image/*" multiple required />
+                  <span class="dropzone-text">Drag & drop images here or click to upload</span>
+                </label>
+              </div>
+              <div class="drop-group">
+                <span>Upload Videos (acting reel, performance, social media) *</span>
+                <label class="dropzone">
+                  <input type="file" name="videos" accept="video/*" multiple required />
+                  <span class="dropzone-text">Drag & drop videos here or click to upload</span>
+                </label>
+              </div>
+
               <label>
                 Link to Portfolio or Instagram
                 <input type="url" name="portfolio" placeholder="https://instagram.com/yourprofile" />
@@ -144,6 +233,277 @@
               </label>
 
               <button type="submit" class="btn btn-primary">Send application</button>
+
+              <datalist id="nationality-list">
+                <option value="Afghan"></option>
+                <option value="Albanian"></option>
+                <option value="Algerian"></option>
+                <option value="Andorran"></option>
+                <option value="Angolan"></option>
+                <option value="Antiguan and Barbudan"></option>
+                <option value="Argentine"></option>
+                <option value="Armenian"></option>
+                <option value="Australian"></option>
+                <option value="Austrian"></option>
+                <option value="Azerbaijani"></option>
+                <option value="Bahamian"></option>
+                <option value="Bahraini"></option>
+                <option value="Bangladeshi"></option>
+                <option value="Barbadian"></option>
+                <option value="Belarusian"></option>
+                <option value="Belgian"></option>
+                <option value="Belizean"></option>
+                <option value="Beninese"></option>
+                <option value="Bhutanese"></option>
+                <option value="Bolivian"></option>
+                <option value="Bosnian and Herzegovinian"></option>
+                <option value="Botswanan"></option>
+                <option value="Brazilian"></option>
+                <option value="Bruneian"></option>
+                <option value="Bulgarian"></option>
+                <option value="Burkinabé"></option>
+                <option value="Burundian"></option>
+                <option value="Cabo Verdean"></option>
+                <option value="Cambodian"></option>
+                <option value="Cameroonian"></option>
+                <option value="Canadian"></option>
+                <option value="Central African"></option>
+                <option value="Chadian"></option>
+                <option value="Chilean"></option>
+                <option value="Chinese"></option>
+                <option value="Colombian"></option>
+                <option value="Comorian"></option>
+                <option value="Congolese (Republic)"></option>
+                <option value="Congolese (DRC)"></option>
+                <option value="Costa Rican"></option>
+                <option value="Croatian"></option>
+                <option value="Cuban"></option>
+                <option value="Cypriot"></option>
+                <option value="Czech"></option>
+                <option value="Danish"></option>
+                <option value="Djiboutian"></option>
+                <option value="Dominican"></option>
+                <option value="Dominican (Republic)"></option>
+                <option value="Dutch"></option>
+                <option value="Ecuadorian"></option>
+                <option value="Egyptian"></option>
+                <option value="El Salvadoran"></option>
+                <option value="Equatorial Guinean"></option>
+                <option value="Eritrean"></option>
+                <option value="Estonian"></option>
+                <option value="Eswatini"></option>
+                <option value="Ethiopian"></option>
+                <option value="Fijian"></option>
+                <option value="Finnish"></option>
+                <option value="French"></option>
+                <option value="Gabonese"></option>
+                <option value="Gambian"></option>
+                <option value="Georgian"></option>
+                <option value="German"></option>
+                <option value="Ghanaian"></option>
+                <option value="Greek"></option>
+                <option value="Grenadian"></option>
+                <option value="Guatemalan"></option>
+                <option value="Guinean"></option>
+                <option value="Guinea-Bissauan"></option>
+                <option value="Guyanese"></option>
+                <option value="Haitian"></option>
+                <option value="Honduran"></option>
+                <option value="Hungarian"></option>
+                <option value="Icelandic"></option>
+                <option value="Indian"></option>
+                <option value="Indonesian"></option>
+                <option value="Iranian"></option>
+                <option value="Iraqi"></option>
+                <option value="Irish"></option>
+                <option value="Israeli"></option>
+                <option value="Italian"></option>
+                <option value="Jamaican"></option>
+                <option value="Japanese"></option>
+                <option value="Jordanian"></option>
+                <option value="Kazakh"></option>
+                <option value="Kenyan"></option>
+                <option value="Kiribati"></option>
+                <option value="Kuwaiti"></option>
+                <option value="Kyrgyz"></option>
+                <option value="Lao"></option>
+                <option value="Latvian"></option>
+                <option value="Lebanese"></option>
+                <option value="Lesotho"></option>
+                <option value="Liberian"></option>
+                <option value="Libyan"></option>
+                <option value="Liechtensteiner"></option>
+                <option value="Lithuanian"></option>
+                <option value="Luxembourgish"></option>
+                <option value="Malagasy"></option>
+                <option value="Malawian"></option>
+                <option value="Malaysian"></option>
+                <option value="Maldivian"></option>
+                <option value="Malian"></option>
+                <option value="Maltese"></option>
+                <option value="Marshallese"></option>
+                <option value="Mauritanian"></option>
+                <option value="Mauritian"></option>
+                <option value="Mexican"></option>
+                <option value="Micronesian"></option>
+                <option value="Moldovan"></option>
+                <option value="Monacan"></option>
+                <option value="Mongolian"></option>
+                <option value="Montenegrin"></option>
+                <option value="Moroccan"></option>
+                <option value="Mozambican"></option>
+                <option value="Myanmar"></option>
+                <option value="Namibian"></option>
+                <option value="Nauruan"></option>
+                <option value="Nepalese"></option>
+                <option value="New Zealander"></option>
+                <option value="Nicaraguan"></option>
+                <option value="Nigerien"></option>
+                <option value="Nigerian"></option>
+                <option value="North Korean"></option>
+                <option value="North Macedonian"></option>
+                <option value="Norwegian"></option>
+                <option value="Omani"></option>
+                <option value="Pakistani"></option>
+                <option value="Palauan"></option>
+                <option value="Panamanian"></option>
+                <option value="Papua New Guinean"></option>
+                <option value="Paraguayan"></option>
+                <option value="Peruvian"></option>
+                <option value="Philippine"></option>
+                <option value="Polish"></option>
+                <option value="Portuguese"></option>
+                <option value="Qatari"></option>
+                <option value="Romanian"></option>
+                <option value="Russian"></option>
+                <option value="Rwandan"></option>
+                <option value="Saint Kitts and Nevis"></option>
+                <option value="Saint Lucian"></option>
+                <option value="Saint Vincentian"></option>
+                <option value="Samoan"></option>
+                <option value="San Marinese"></option>
+                <option value="Sao Tomean"></option>
+                <option value="Saudi"></option>
+                <option value="Senegalese"></option>
+                <option value="Serbian"></option>
+                <option value="Seychellois"></option>
+                <option value="Sierra Leonean"></option>
+                <option value="Singaporean"></option>
+                <option value="Slovak"></option>
+                <option value="Slovenian"></option>
+                <option value="Solomon Islander"></option>
+                <option value="Somali"></option>
+                <option value="South African"></option>
+                <option value="South Korean"></option>
+                <option value="South Sudanese"></option>
+                <option value="Spanish"></option>
+                <option value="Sri Lankan"></option>
+                <option value="Sudanese"></option>
+                <option value="Surinamese"></option>
+                <option value="Swazi"></option>
+                <option value="Swedish"></option>
+                <option value="Swiss"></option>
+                <option value="Syrian"></option>
+                <option value="Taiwanese"></option>
+                <option value="Tajik"></option>
+                <option value="Tanzanian"></option>
+                <option value="Thai"></option>
+                <option value="Timorese"></option>
+                <option value="Togolese"></option>
+                <option value="Tongan"></option>
+                <option value="Trinidadian and Tobagonian"></option>
+                <option value="Tunisian"></option>
+                <option value="Turkish"></option>
+                <option value="Turkmen"></option>
+                <option value="Tuvaluan"></option>
+                <option value="Ugandan"></option>
+                <option value="Ukrainian"></option>
+                <option value="United Arab Emirates"></option>
+                <option value="United Kingdom"></option>
+                <option value="United States"></option>
+                <option value="Uruguayan"></option>
+                <option value="Uzbek"></option>
+                <option value="Vanuatuan"></option>
+                <option value="Vatican"></option>
+                <option value="Venezuelan"></option>
+                <option value="Vietnamese"></option>
+                <option value="Yemeni"></option>
+                <option value="Zambian"></option>
+                <option value="Zimbabwean"></option>
+              </datalist>
+              <datalist id="city-list">
+                <option value="Abu Dhabi"></option>
+                <option value="Alexandria"></option>
+                <option value="Amman"></option>
+                <option value="Antalya"></option>
+                <option value="Athens"></option>
+                <option value="Bangkok"></option>
+                <option value="Barcelona"></option>
+                <option value="Beirut"></option>
+                <option value="Berlin"></option>
+                <option value="Casablanca"></option>
+                <option value="Cairo"></option>
+                <option value="Doha"></option>
+                <option value="Dubai"></option>
+                <option value="Dublin"></option>
+                <option value="Istanbul"></option>
+                <option value="Jeddah"></option>
+                <option value="Johannesburg"></option>
+                <option value="Kuwait City"></option>
+                <option value="London"></option>
+                <option value="Los Angeles"></option>
+                <option value="Madrid"></option>
+                <option value="Manama"></option>
+                <option value="Milan"></option>
+                <option value="Monaco"></option>
+                <option value="Montreal"></option>
+                <option value="Moscow"></option>
+                <option value="Muscat"></option>
+                <option value="New York"></option>
+                <option value="Paris"></option>
+                <option value="Rabat"></option>
+                <option value="Riyadh"></option>
+                <option value="Rome"></option>
+                <option value="San Francisco"></option>
+                <option value="Sharjah"></option>
+                <option value="Sydney"></option>
+                <option value="Tokyo"></option>
+                <option value="Toronto"></option>
+                <option value="Tripoli"></option>
+                <option value="Tunis"></option>
+                <option value="Zurich"></option>
+              </datalist>
+              <datalist id="hair-color-list">
+                <option value="Ash Blonde"></option>
+                <option value="Auburn"></option>
+                <option value="Black"></option>
+                <option value="Blonde"></option>
+                <option value="Brown"></option>
+                <option value="Chestnut"></option>
+                <option value="Chocolate Brown"></option>
+                <option value="Copper"></option>
+                <option value="Dark Blonde"></option>
+                <option value="Dark Brown"></option>
+                <option value="Gray"></option>
+                <option value="Light Blonde"></option>
+                <option value="Light Brown"></option>
+                <option value="Platinum Blonde"></option>
+                <option value="Red"></option>
+                <option value="Silver"></option>
+                <option value="Strawberry Blonde"></option>
+              </datalist>
+              <datalist id="eye-color-list">
+                <option value="Amber"></option>
+                <option value="Blue"></option>
+                <option value="Brown"></option>
+                <option value="Gray"></option>
+                <option value="Green"></option>
+                <option value="Hazel"></option>
+                <option value="Hazel Blue"></option>
+                <option value="Hazel Green"></option>
+                <option value="Light Brown"></option>
+                <option value="Dark Brown"></option>
+              </datalist>
             </form>
 
             <p class="form-footnote">
@@ -157,5 +517,159 @@
         <small>&copy; 2025 Traits Agency. All rights reserved.</small>
       </footer>
     </div>
+        <script>
+      (function () {
+        const zones = document.querySelectorAll('.dropzone');
+        zones.forEach((zone) => {
+          const input = zone.querySelector('input[type="file"]');
+          const text = zone.querySelector('.dropzone-text');
+          const defaultText = text.textContent;
+
+          const updateText = () => {
+            if (input.files && input.files.length) {
+              text.textContent = ${input.files.length} file(s) selected;
+            } else {
+              text.textContent = defaultText;
+            }
+          };
+
+          zone.addEventListener('click', () => input.click());
+
+          input.addEventListener('change', updateText);
+
+          ['dragenter', 'dragover'].forEach((eventName) => {
+            zone.addEventListener(eventName, (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              zone.classList.add('is-dragover');
+            });
+          });
+
+          ['dragleave', 'dragend'].forEach((eventName) => {
+            zone.addEventListener(eventName, (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              zone.classList.remove('is-dragover');
+            });
+          });
+
+          zone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            zone.classList.remove('is-dragover');
+            if (e.dataTransfer.files.length) {
+              input.files = e.dataTransfer.files;
+              updateText();
+            }
+          });
+        });
+      })();
+
+      (function () {
+        const multiselects = document.querySelectorAll('.multi-select');
+
+        const closeAll = (except) => {
+          multiselects.forEach((ms) => {
+            if (ms !== except) {
+              ms.classList.remove('is-open');
+              const trigger = ms.querySelector('.multi-select-input');
+              if (trigger) {
+                trigger.setAttribute('aria-expanded', 'false');
+              }
+            }
+          });
+        };
+
+        document.addEventListener('click', (event) => {
+          if (![...multiselects].some((ms) => ms.contains(event.target))) {
+            closeAll();
+          }
+        });
+
+        multiselects.forEach((ms) => {
+          const trigger = ms.querySelector('.multi-select-input');
+          const menu = ms.querySelector('.multi-select-menu');
+          const buttons = menu.querySelectorAll('button');
+          const placeholder = ms.querySelector('.multi-select-placeholder');
+          const tagsContainer = ms.querySelector('.multi-select-tags');
+          const hiddenInput = ms.querySelector('input[type="hidden"]');
+          const selections = new Set();
+
+          const renderTags = () => {
+            tagsContainer.innerHTML = '';
+            Array.from(selections)
+              .sort()
+              .forEach((value) => {
+                const tag = document.createElement('span');
+                tag.className = 'multi-tag';
+                tag.textContent = value;
+
+                const removeBtn = document.createElement('button');
+                removeBtn.type = 'button';
+                removeBtn.innerHTML = '&times;';
+                removeBtn.setAttribute('aria-label', `Remove ${value}`);
+                removeBtn.addEventListener('click', (e) => {
+                  e.stopPropagation();
+                  selections.delete(value);
+                  renderTags();
+                });
+
+                tag.appendChild(removeBtn);
+                tagsContainer.appendChild(tag);
+              });
+
+            placeholder.classList.toggle('is-hidden', selections.size > 0);
+            hiddenInput.value = Array.from(selections).join(', ');
+
+            buttons.forEach((btn) => {
+              btn.classList.toggle('is-selected', selections.has(btn.dataset.value));
+            });
+          };
+
+          const toggleMenu = () => {
+            const isOpen = ms.classList.contains('is-open');
+            if (isOpen) {
+              ms.classList.remove('is-open');
+              trigger.setAttribute('aria-expanded', 'false');
+            } else {
+              closeAll(ms);
+              ms.classList.add('is-open');
+              trigger.setAttribute('aria-expanded', 'true');
+            }
+          };
+
+          trigger.addEventListener('click', () => toggleMenu());
+          trigger.addEventListener('keydown', (e) => {
+            if (['Enter', ' '].includes(e.key)) {
+              e.preventDefault();
+              toggleMenu();
+            }
+            if (e.key === 'Escape') {
+              e.preventDefault();
+              closeAll();
+            }
+          });
+
+          renderTags();
+
+          buttons.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              const value = btn.dataset.value;
+              if (selections.has(value)) {
+                selections.delete(value);
+              } else {
+                selections.add(value);
+              }
+              renderTags();
+            });
+          });
+
+          menu.addEventListener('click', (e) => e.stopPropagation());
+        });
+      })();
+    </script>
   </body>
 </html>
+
+

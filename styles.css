@@ -7,7 +7,7 @@
   --border: #e1d9ce;
   --shadow: 0 25px 60px rgba(13, 13, 13, 0.1);
   --max-width: 1100px;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 *,
@@ -59,7 +59,7 @@ body {
 }
 
 .brand-logo {
-  width: 200px;
+  width: 180px;
   height: auto;
   display: block;
 }
@@ -103,22 +103,22 @@ nav a {
 
 .hero h1 {
   font-family: 'Playfair Display', 'Times New Roman', serif;
-  font-size: clamp(2.8rem, 4vw, 3.8rem);
+  font-size: clamp(2.4rem, 3.5vw, 3.4rem);
   margin: 0.5rem 0;
   letter-spacing: 0.03em;
 }
 
 .hero p {
   max-width: 38rem;
-  font-size: 1.05rem;
+  font-size: 1rem;
   margin: 0;
   color: rgba(255, 255, 255, 0.85);
 }
 
 .eyebrow {
   text-transform: uppercase;
-  letter-spacing: 0.4em;
-  font-size: 0.85rem;
+  letter-spacing: 0.35em;
+  font-size: 0.78rem;
   margin: 0;
 }
 
@@ -134,14 +134,14 @@ nav a {
 
 .about-hero h1 {
   font-family: 'Playfair Display', 'Times New Roman', serif;
-  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-size: clamp(2.1rem, 3.5vw, 2.8rem);
   margin: 0.5rem 0 1rem;
 }
 
 .about-hero p {
   max-width: 48rem;
   color: var(--muted);
-  font-size: 1.05rem;
+  font-size: 1rem;
   margin: 0;
 }
 
@@ -291,6 +291,21 @@ nav a {
   color: var(--fg);
 }
 
+.form-grid select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path d="M1 1l5 5 5-5" stroke="%231a1a1a" stroke-width="2" fill="none" stroke-linecap="round" /></svg>');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 16px) center;
+  background-size: 12px;
+}
+
+.form-grid select[multiple] {
+  background-image: none;
+  min-height: 180px;
+  padding-right: 0.75rem;
+}
+
 .form-grid textarea {
   min-height: 130px;
   resize: vertical;
@@ -298,16 +313,173 @@ nav a {
 
 .form-grid input[type='file'] {
   padding: 0.6rem 1rem;
+  display: none;
 }
 
 .checkbox {
   flex-direction: row;
   align-items: flex-start;
-  gap: 0.8rem;
+  gap: 0.5rem;
 }
 
 .checkbox input {
   margin-top: 0.4rem;
+}
+
+.checkbox span {
+  font-size: 0.7rem;
+  line-height: 1.35;
+  text-transform: none;
+  letter-spacing: normal;
+  flex: 1;
+  display: block;
+}
+
+.field-hint {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.multi-select {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+}
+
+.multi-select-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.multi-select-input {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 0.7rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 56px;
+  cursor: pointer;
+  position: relative;
+}
+
+.multi-select-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.multi-select-placeholder {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.multi-tag {
+  background: var(--bg-muted);
+  border-radius: 999px;
+  padding: 0.15rem 0.75rem;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.multi-tag button {
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--muted);
+  line-height: 1;
+}
+
+.multi-select-arrow {
+  width: 10px;
+  height: 6px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="%231a1a1a" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+.multi-select-menu {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.35rem;
+  max-height: 260px;
+  overflow-y: auto;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 0;
+  right: 0;
+  display: none;
+  z-index: 5;
+}
+
+.multi-select-menu button {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.multi-select-menu button.is-selected {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.multi-select.is-open .multi-select-input {
+  border-color: var(--accent);
+}
+
+.multi-select.is-open .multi-select-menu {
+  display: grid;
+}
+
+.multi-select .multi-select-placeholder.is-hidden {
+  display: none;
+}
+
+.drop-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dropzone {
+  border: 1.5px dashed var(--border);
+  border-radius: 18px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.dropzone-text {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.dropzone.is-dragover {
+  border-color: var(--accent);
+  background: rgba(26, 26, 26, 0.03);
 }
 .form-footnote {
   margin-top: 1rem;
