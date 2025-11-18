@@ -74,8 +74,7 @@ nav a {
 }
 
 .hero {
-  margin: 0 6vw;
-  margin-top: 2rem;
+  margin: 3rem 6vw 2rem;
   min-height: 60vh;
   border-radius: 32px;
   background-image: linear-gradient(
@@ -120,7 +119,7 @@ nav a {
 }
 
 .hero-actions {
-  margin: 2.5rem auto 4rem;
+  margin: 0 auto 4rem;
   width: min(var(--max-width), 92vw);
 }
 
@@ -130,7 +129,7 @@ nav a {
   border-radius: 28px;
   padding: 2rem 2.5rem;
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
   justify-content: center;
   box-shadow: var(--shadow);
   flex-wrap: wrap;
@@ -141,9 +140,9 @@ nav a {
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  padding: 0.85rem 2.2rem;
-  font-size: 0.95rem;
-  letter-spacing: 0.08em;
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   font-weight: 600;
   transition: transform 0.2s ease;
