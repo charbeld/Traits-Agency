@@ -22,12 +22,13 @@
         <a class="brand" href="index.html">
           <img src="traits-logo.png" alt="Traits Agency" class="brand-logo" />
         </a>
-        <nav>
-          <a href="about.html">About Us</a>
-        </nav>
       </header>
 
       <main>
+        <nav class="hero-nav" aria-label="Primary">
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact Us</a>
+        </nav>
         <section class="form-section">
           <div class="form-card">
             <p class="eyebrow">Apply now</p>
@@ -83,14 +84,14 @@
                     placeholder="Start typing to search"
                   />
                 </label>
-                <div class="multi-select" data-label="Select languages">
-                  <span class="multi-select-label">Languages Spoken *</span>
-                  <div class="multi-select-input" tabindex="0" role="combobox" aria-expanded="false">
-                    <div class="multi-select-tags" aria-live="polite"></div>
-                    <span class="multi-select-placeholder">Choose languages</span>
-                    <span class="multi-select-arrow" aria-hidden="true"></span>
+                <div class="language-select">
+                  <span class="language-select-label">Languages Spoken *</span>
+                  <div class="language-select-input" tabindex="0" role="combobox" aria-expanded="false">
+                    <div class="language-select-tags" aria-live="polite"></div>
+                    <span class="language-select-placeholder">Choose languages</span>
+                    <span class="language-select-arrow" aria-hidden="true"></span>
                   </div>
-                  <div class="multi-select-menu" role="listbox">
+                  <div class="language-select-menu" role="listbox">
                     <button type="button" data-value="Afrikaans">Afrikaans</button>
                     <button type="button" data-value="Albanian">Albanian</button>
                     <button type="button" data-value="Amharic">Amharic</button>
@@ -141,7 +142,6 @@
                     <button type="button" data-value="Vietnamese">Vietnamese</button>
                   </div>
                   <input type="hidden" name="languages" required />
-                  <span class="field-hint">Select languages one by one. Click × to remove.</span>
                 </div>
                 <label>
                   Height *
@@ -171,7 +171,14 @@
                 </label>
                 <label>
                   Clothing Size (Shirt, Pants, Shoes) *
-                  <input type="text" name="clothing_size" required placeholder="M / 32 / 42" />
+                  <input
+                    type="text"
+                    name="clothing_size"
+                    required
+                    placeholder="M / 32 / 42"
+                    pattern="^[A-Za-z]{1,3}\s?\/\s?\d{1,2}\s?\/\s?\d{1,2}$"
+                    title="Use the format Shirt / Pants / Shoes, e.g. M / 32 / 42"
+                  />
                 </label>
                 <label>
                   Distinguishing features
@@ -223,6 +230,200 @@
                   <option value="no">No</option>
                 </select>
               </label>
+
+              <section class="family-section">
+                <div class="family-header">
+                  <div>
+                    <p class="eyebrow">Optional</p>
+                    <h2>Adding family members?</h2>
+                    <p>Add partners or children so we can review everyone together.</p>
+                  </div>
+                  <button type="button" class="btn btn-outline add-member-btn">Add member</button>
+                </div>
+                <div class="family-members" data-empty-text="No additional members added yet."></div>
+              </section>
+
+              <template id="family-member-template">
+                <div class="family-member">
+                  <div class="member-head">
+                    <div>
+                      <p class="member-label"></p>
+                      <small>Fill in details for this person.</small>
+                    </div>
+                    <button type="button" class="remove-member" aria-label="Remove member">&times;</button>
+                  </div>
+                  <div class="member-grid form-grid two-column">
+                    <label>
+                      Full Name *
+                      <input type="text" name="member_name[]" required placeholder="Alex Taylor" />
+                    </label>
+                    <label>
+                      Date of Birth *
+                      <input type="date" name="member_dob[]" required />
+                    </label>
+                    <label>
+                      Gender *
+                      <select name="member_gender[]" required>
+                        <option value="" disabled selected>Select gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                      </select>
+                    </label>
+                    <label>
+                      Relation to applicant *
+                      <input type="text" name="member_relation[]" required placeholder="Sibling" />
+                    </label>
+                    <label>
+                      Contact Number *
+                      <input type="tel" name="member_phone[]" required placeholder="+961 12 345 678" />
+                    </label>
+                    <label>
+                      Email Address *
+                      <input type="email" name="member_email[]" required placeholder="name@example.com" />
+                    </label>
+                    <label>
+                      Nationality *
+                      <input
+                        type="text"
+                        name="member_nationality[]"
+                        list="nationality-list"
+                        required
+                        placeholder="Start typing to search"
+                      />
+                    </label>
+                    <label>
+                      Current Location / City *
+                      <input
+                        type="text"
+                        name="member_location[]"
+                        list="city-list"
+                        required
+                        placeholder="Start typing to search"
+                      />
+                    </label>
+                    <div class="language-select">
+                      <span class="language-select-label">Languages Spoken *</span>
+                      <div class="language-select-input" tabindex="0" role="combobox" aria-expanded="false">
+                        <div class="language-select-tags" aria-live="polite"></div>
+                        <span class="language-select-placeholder">Choose languages</span>
+                        <span class="language-select-arrow" aria-hidden="true"></span>
+                      </div>
+                      <div class="language-select-menu" role="listbox">
+                        <button type="button" data-value="Afrikaans">Afrikaans</button>
+                        <button type="button" data-value="Albanian">Albanian</button>
+                        <button type="button" data-value="Amharic">Amharic</button>
+                        <button type="button" data-value="Arabic">Arabic</button>
+                        <button type="button" data-value="Armenian">Armenian</button>
+                        <button type="button" data-value="Bengali">Bengali</button>
+                        <button type="button" data-value="Bulgarian">Bulgarian</button>
+                        <button type="button" data-value="Burmese">Burmese</button>
+                        <button type="button" data-value="Cantonese">Cantonese</button>
+                        <button type="button" data-value="Croatian">Croatian</button>
+                        <button type="button" data-value="Czech">Czech</button>
+                        <button type="button" data-value="Danish">Danish</button>
+                        <button type="button" data-value="Dutch">Dutch</button>
+                        <button type="button" data-value="English">English</button>
+                        <button type="button" data-value="Estonian">Estonian</button>
+                        <button type="button" data-value="Farsi">Farsi</button>
+                        <button type="button" data-value="Finnish">Finnish</button>
+                        <button type="button" data-value="French">French</button>
+                        <button type="button" data-value="Georgian">Georgian</button>
+                        <button type="button" data-value="German">German</button>
+                        <button type="button" data-value="Greek">Greek</button>
+                        <button type="button" data-value="Hebrew">Hebrew</button>
+                        <button type="button" data-value="Hindi">Hindi</button>
+                        <button type="button" data-value="Hungarian">Hungarian</button>
+                        <button type="button" data-value="Indonesian">Indonesian</button>
+                        <button type="button" data-value="Italian">Italian</button>
+                        <button type="button" data-value="Japanese">Japanese</button>
+                        <button type="button" data-value="Korean">Korean</button>
+                        <button type="button" data-value="Latvian">Latvian</button>
+                        <button type="button" data-value="Lithuanian">Lithuanian</button>
+                        <button type="button" data-value="Malay">Malay</button>
+                        <button type="button" data-value="Mandarin Chinese">Mandarin Chinese</button>
+                        <button type="button" data-value="Norwegian">Norwegian</button>
+                        <button type="button" data-value="Polish">Polish</button>
+                        <button type="button" data-value="Portuguese">Portuguese</button>
+                        <button type="button" data-value="Romanian">Romanian</button>
+                        <button type="button" data-value="Russian">Russian</button>
+                        <button type="button" data-value="Serbian">Serbian</button>
+                        <button type="button" data-value="Somali">Somali</button>
+                        <button type="button" data-value="Spanish">Spanish</button>
+                        <button type="button" data-value="Swahili">Swahili</button>
+                        <button type="button" data-value="Swedish">Swedish</button>
+                        <button type="button" data-value="Tagalog">Tagalog</button>
+                        <button type="button" data-value="Thai">Thai</button>
+                        <button type="button" data-value="Turkish">Turkish</button>
+                        <button type="button" data-value="Ukrainian">Ukrainian</button>
+                        <button type="button" data-value="Urdu">Urdu</button>
+                        <button type="button" data-value="Vietnamese">Vietnamese</button>
+                      </div>
+                      <input type="hidden" name="member_languages[]" required />
+                    </div>
+                    <label>
+                      Height *
+                      <input type="text" name="member_height[]" required placeholder="150 cm" />
+                    </label>
+                    <label>
+                      Weight *
+                      <input type="text" name="member_weight[]" required placeholder="45 kg" />
+                    </label>
+                    <label>
+                      Hair Color
+                      <input
+                        type="text"
+                        name="member_hair[]"
+                        list="hair-color-list"
+                        placeholder="Select or type"
+                      />
+                    </label>
+                    <label>
+                      Eye Color
+                      <input
+                        type="text"
+                        name="member_eye[]"
+                        list="eye-color-list"
+                        placeholder="Select or type"
+                      />
+                    </label>
+                    <label>
+                      Clothing Size (Shirt, Pants, Shoes)
+                      <input
+                        type="text"
+                        name="member_clothing[]"
+                        placeholder="S / 28 / 38"
+                        pattern="^[A-Za-z]{1,3}\s?\/\s?\d{1,2}\s?\/\s?\d{1,2}$"
+                        title="Use the format Shirt / Pants / Shoes, e.g. M / 32 / 42"
+                      />
+                    </label>
+                    <label>
+                      Distinguishing features
+                      <input type="text" name="member_features[]" placeholder="Birthmark on hand" />
+                    </label>
+                  </div>
+                  <label>
+                    Special skills
+                    <textarea
+                      name="member_skills[]"
+                      placeholder="Share any skills: dancing, roller skating, kayaking, etc."
+                    ></textarea>
+                  </label>
+                  <div class="drop-group member-media">
+                    <span>Upload Photos for this member *</span>
+                    <label class="dropzone">
+                      <input type="file" name="member_photos[]" accept="image/*" multiple required />
+                      <span class="dropzone-text">Drag & drop images here or click to upload</span>
+                    </label>
+                  </div>
+                    <div class="drop-group member-media">
+                    <span>Upload Videos for this member *</span>
+                    <label class="dropzone">
+                      <input type="file" name="member_videos[]" accept="video/*" multiple required />
+                      <span class="dropzone-text">Drag & drop videos here or click to upload</span>
+                    </label>
+                  </div>
+                </div>
+              </template>
 
               <label class="checkbox">
                 <input type="checkbox" name="consent" required />
@@ -519,22 +720,21 @@
     </div>
         <script>
       (function () {
-        const zones = document.querySelectorAll('.dropzone');
-        zones.forEach((zone) => {
+        const bindZone = (zone) => {
           const input = zone.querySelector('input[type="file"]');
           const text = zone.querySelector('.dropzone-text');
+          if (!input || !text) return;
           const defaultText = text.textContent;
 
           const updateText = () => {
             if (input.files && input.files.length) {
-              text.textContent = ${input.files.length} file(s) selected;
+              text.textContent = `${input.files.length} file(s) selected`;
             } else {
               text.textContent = defaultText;
             }
           };
 
           zone.addEventListener('click', () => input.click());
-
           input.addEventListener('change', updateText);
 
           ['dragenter', 'dragover'].forEach((eventName) => {
@@ -562,17 +762,26 @@
               updateText();
             }
           });
-        });
+        };
+
+        const initDropzones = (root = document) => {
+          root.querySelectorAll('.dropzone').forEach((zone) => {
+            if (zone.dataset.bound === 'true') return;
+            zone.dataset.bound = 'true';
+            bindZone(zone);
+          });
+        };
+
+        initDropzones();
+        window.initDropzones = initDropzones;
       })();
 
       (function () {
-        const multiselects = document.querySelectorAll('.multi-select');
-
-        const closeAll = (except) => {
-          multiselects.forEach((ms) => {
-            if (ms !== except) {
-              ms.classList.remove('is-open');
-              const trigger = ms.querySelector('.multi-select-input');
+        const closeAll = (selects, except) => {
+          selects.forEach((select) => {
+            if (select !== except) {
+              select.classList.remove('is-open');
+              const trigger = select.querySelector('.language-select-input');
               if (trigger) {
                 trigger.setAttribute('aria-expanded', 'false');
               }
@@ -580,46 +789,55 @@
           });
         };
 
-        document.addEventListener('click', (event) => {
-          if (![...multiselects].some((ms) => ms.contains(event.target))) {
-            closeAll();
-          }
-        });
+        const bindSelect = (select) => {
+          const trigger = select.querySelector('.language-select-input');
+          const menu = select.querySelector('.language-select-menu');
+          const placeholder = select.querySelector('.language-select-placeholder');
+          const tagsContainer = select.querySelector('.language-select-tags');
+          const hiddenInput = select.querySelector('input[type="hidden"]');
+          if (!trigger || !menu || !placeholder || !tagsContainer || !hiddenInput) return;
+          const buttons = Array.from(menu.querySelectorAll('button')).sort((a, b) =>
+            a.textContent.localeCompare(b.textContent)
+          );
+          buttons.forEach((btn) => menu.appendChild(btn));
 
-        multiselects.forEach((ms) => {
-          const trigger = ms.querySelector('.multi-select-input');
-          const menu = ms.querySelector('.multi-select-menu');
-          const buttons = menu.querySelectorAll('button');
-          const placeholder = ms.querySelector('.multi-select-placeholder');
-          const tagsContainer = ms.querySelector('.multi-select-tags');
-          const hiddenInput = ms.querySelector('input[type="hidden"]');
           const selections = new Set();
+          const placeholderDefault = placeholder ? placeholder.textContent.trim() : '';
 
           const renderTags = () => {
             tagsContainer.innerHTML = '';
-            Array.from(selections)
-              .sort()
-              .forEach((value) => {
-                const tag = document.createElement('span');
-                tag.className = 'multi-tag';
-                tag.textContent = value;
+            const orderedSelections = Array.from(selections).sort();
 
-                const removeBtn = document.createElement('button');
-                removeBtn.type = 'button';
-                removeBtn.innerHTML = '&times;';
-                removeBtn.setAttribute('aria-label', `Remove ${value}`);
-                removeBtn.addEventListener('click', (e) => {
-                  e.stopPropagation();
-                  selections.delete(value);
-                  renderTags();
-                });
+            orderedSelections.forEach((value) => {
+              const tag = document.createElement('span');
+              tag.className = 'language-tag';
+              tag.textContent = value;
 
-                tag.appendChild(removeBtn);
-                tagsContainer.appendChild(tag);
+              const removeBtn = document.createElement('button');
+              removeBtn.type = 'button';
+              removeBtn.innerHTML = '&times;';
+              removeBtn.setAttribute('aria-label', `Remove ${value}`);
+              removeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                selections.delete(value);
+                renderTags();
               });
 
-            placeholder.classList.toggle('is-hidden', selections.size > 0);
-            hiddenInput.value = Array.from(selections).join(', ');
+              tag.appendChild(removeBtn);
+              tagsContainer.appendChild(tag);
+            });
+
+            if (placeholder) {
+              if (orderedSelections.length) {
+                placeholder.textContent = orderedSelections.join(', ');
+                placeholder.classList.add('is-hidden');
+              } else {
+                placeholder.textContent = placeholderDefault;
+                placeholder.classList.remove('is-hidden');
+              }
+            }
+
+            hiddenInput.value = orderedSelections.join(', ');
 
             buttons.forEach((btn) => {
               btn.classList.toggle('is-selected', selections.has(btn.dataset.value));
@@ -627,13 +845,13 @@
           };
 
           const toggleMenu = () => {
-            const isOpen = ms.classList.contains('is-open');
+            const isOpen = select.classList.contains('is-open');
             if (isOpen) {
-              ms.classList.remove('is-open');
+              select.classList.remove('is-open');
               trigger.setAttribute('aria-expanded', 'false');
             } else {
-              closeAll(ms);
-              ms.classList.add('is-open');
+              closeAll(document.querySelectorAll('.language-select'), select);
+              select.classList.add('is-open');
               trigger.setAttribute('aria-expanded', 'true');
             }
           };
@@ -646,11 +864,9 @@
             }
             if (e.key === 'Escape') {
               e.preventDefault();
-              closeAll();
+              closeAll(document.querySelectorAll('.language-select'));
             }
           });
-
-          renderTags();
 
           buttons.forEach((btn) => {
             btn.addEventListener('click', (e) => {
@@ -666,7 +882,67 @@
           });
 
           menu.addEventListener('click', (e) => e.stopPropagation());
+
+          renderTags();
+        };
+
+        const initLanguageSelects = (root = document) => {
+          const selects = Array.from(root.querySelectorAll('.language-select'));
+          selects.forEach((select) => {
+            if (select.dataset.bound === 'true') return;
+            select.dataset.bound = 'true';
+            bindSelect(select);
+          });
+        };
+
+        document.addEventListener('click', (event) => {
+          const selects = document.querySelectorAll('.language-select');
+          if (![...selects].some((select) => select.contains(event.target))) {
+            closeAll(selects);
+          }
         });
+
+        initLanguageSelects();
+        window.initLanguageSelects = initLanguageSelects;
+      })();
+
+      (function () {
+        const template = document.getElementById('family-member-template');
+        const container = document.querySelector('.family-members');
+        const addBtn = document.querySelector('.add-member-btn');
+        if (!template || !container || !addBtn) return;
+
+        const updateState = () => {
+          container.classList.toggle('has-members', container.children.length > 0);
+          Array.from(container.children).forEach((card, index) => {
+            const label = card.querySelector('.member-label');
+            if (label) {
+              label.textContent = `Member ${index + 1}`;
+            }
+          });
+        };
+
+        const addMember = () => {
+          const clone = document.importNode(template.content, true);
+          const card = clone.querySelector('.family-member');
+          const removeBtn = clone.querySelector('.remove-member');
+          if (removeBtn) {
+            removeBtn.addEventListener('click', () => {
+              card.remove();
+              updateState();
+            });
+          }
+          container.appendChild(clone);
+          if (window.initLanguageSelects) {
+            window.initLanguageSelects(card);
+          }
+          if (window.initDropzones) {
+            window.initDropzones(card);
+          }
+          updateState();
+        };
+
+        addBtn.addEventListener('click', addMember);
       })();
     </script>
   </body>
