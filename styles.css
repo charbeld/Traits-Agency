@@ -607,6 +607,35 @@ body {
   border-color: var(--accent);
   background: rgba(26, 26, 26, 0.03);
 }
+
+.form-status {
+  margin-top: 1.25rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  background: rgba(26, 26, 26, 0.04);
+  color: var(--fg);
+}
+
+.form-status[hidden] {
+  display: none;
+}
+
+.form-status.is-info {
+  background: rgba(26, 26, 26, 0.08);
+}
+
+.form-status.is-success {
+  background: #e8f4ec;
+  color: #0c5132;
+}
+
+.form-status.is-error {
+  background: #fdeceb;
+  color: #8a1c1c;
+}
+
 .form-footnote {
   margin-top: 1rem;
   font-size: 0.9rem;

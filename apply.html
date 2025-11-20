@@ -38,7 +38,13 @@
               respond with curated opportunities.
             </p>
 
-            <form class="form-grid" action="#" method="post" enctype="multipart/form-data">
+            <form
+              id="application-form"
+              class="form-grid"
+              action="https://4nlsyfz1.rpcl.app/webhook/88eafe9d-ad03-4a66-9622-0519ef7f92b6"
+              method="post"
+              enctype="multipart/form-data"
+            >
               <div class="form-grid two-column">
                 <label>
                   Full Name *
@@ -706,6 +712,7 @@
                 <option value="Dark Brown"></option>
               </datalist>
             </form>
+            <div class="form-status" data-form-status role="status" aria-live="polite" hidden></div>
 
             <p class="form-footnote">
               Prefer to speak with a producer? <a href="contact.html">Contact us directly.</a>
@@ -761,6 +768,12 @@
               input.files = e.dataTransfer.files;
               updateText();
             }
+          });
+
+          zone.addEventListener('dropzone:reset', () => {
+            zone.classList.remove('is-dragover');
+            input.value = '';
+            text.textContent = defaultText;
           });
         };
 
@@ -884,6 +897,11 @@
           menu.addEventListener('click', (e) => e.stopPropagation());
 
           renderTags();
+
+          select.addEventListener('language-select:reset', () => {
+            selections.clear();
+            renderTags();
+          });
         };
 
         const initLanguageSelects = (root = document) => {
@@ -943,6 +961,72 @@
         };
 
         addBtn.addEventListener('click', addMember);
+      })();
+
+      (function () {
+        const form = document.getElementById('application-form');
+        const statusEl = document.querySelector('[data-form-status]');
+        if (!form || !statusEl) return;
+        const submitButton = form.querySelector('button[type="submit"]');
+        const defaultButtonText = submitButton ? submitButton.textContent : '';
+        const webhookUrl = form.getAttribute('action');
+
+        const setStatus = (message, variant = 'info') => {
+          statusEl.textContent = message;
+          statusEl.classList.remove('is-success', 'is-error', 'is-info');
+          statusEl.classList.add(`is-${variant}`);
+          statusEl.hidden = false;
+        };
+
+        const resetUi = () => {
+          form.querySelectorAll('.language-select').forEach((select) => {
+            select.dispatchEvent(new CustomEvent('language-select:reset'));
+          });
+          form.querySelectorAll('.dropzone').forEach((zone) => {
+            zone.dispatchEvent(new CustomEvent('dropzone:reset'));
+          });
+          const familyMembers = form.querySelector('.family-members');
+          if (familyMembers) {
+            familyMembers.innerHTML = '';
+            familyMembers.classList.remove('has-members');
+          }
+        };
+
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          if (form.dataset.submitting === 'true') return;
+          if (!form.reportValidity()) return;
+
+          form.dataset.submitting = 'true';
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+          }
+          setStatus('Sending your application...', 'info');
+
+          try {
+            const formData = new FormData(form);
+            const response = await fetch(webhookUrl, {
+              method: 'POST',
+              body: formData,
+            });
+            if (!response.ok) {
+              throw new Error(`Webhook responded with status ${response.status}`);
+            }
+            setStatus('Thank you! Your application has been delivered to our producers.', 'success');
+            form.reset();
+            resetUi();
+          } catch (error) {
+            console.error(error);
+            setStatus('We could not send your application. Please try again in a moment.', 'error');
+          } finally {
+            form.dataset.submitting = 'false';
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = defaultButtonText;
+            }
+          }
+        });
       })();
     </script>
   </body>
