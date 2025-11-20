@@ -1005,7 +1005,81 @@
           setStatus('Sending your application...', 'info');
 
           try {
-            const formData = new FormData(form);
+            const formData = new FormData();
+
+            const collectBaseFields = () => {
+              const elements = Array.from(form.elements).filter(
+                (el) => el.name && !el.closest('.family-member')
+              );
+              elements.forEach((el) => {
+                if (el.type === 'file') {
+                  Array.from(el.files || []).forEach((file) => formData.append(el.name, file));
+                  return;
+                }
+                if ((el.type === 'checkbox' || el.type === 'radio') && !el.checked) return;
+                formData.append(el.name, el.value);
+              });
+            };
+
+            const slugify = (value, fallback) => {
+              const slug = value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+              return slug || fallback;
+            };
+
+            const appendMemberFiles = (card, inputName, keyPrefix, label) => {
+              const input = card.querySelector(`[name="${inputName}"]`);
+              if (!input || !input.files) return;
+              Array.from(input.files).forEach((file, fileIndex) => {
+                const ext = file.name.includes('.') ? file.name.slice(file.name.lastIndexOf('.')) : '';
+                const safeLabel = slugify(label, keyPrefix);
+                const renamed = new File(
+                  [file],
+                  `${safeLabel}-${keyPrefix}-${fileIndex + 1}${ext}`,
+                  { type: file.type }
+                );
+                formData.append(`${keyPrefix}[]`, renamed);
+              });
+            };
+
+            const collectMembers = () => {
+              const members = [];
+              const cards = Array.from(form.querySelectorAll('.family-member'));
+              cards.forEach((card, index) => {
+                const grab = (name) => card.querySelector(`[name="${name}"]`)?.value?.trim() || '';
+                const memberName = grab('member_name[]') || `Member ${index + 1}`;
+                const memberKey = `member_${index + 1}`;
+
+                members.push({
+                  name: memberName,
+                  dob: grab('member_dob[]'),
+                  gender: grab('member_gender[]'),
+                  relation: grab('member_relation[]'),
+                  phone: grab('member_phone[]'),
+                  email: grab('member_email[]'),
+                  nationality: grab('member_nationality[]'),
+                  location: grab('member_location[]'),
+                  languages: grab('member_languages[]'),
+                  height: grab('member_height[]'),
+                  weight: grab('member_weight[]'),
+                  hair: grab('member_hair[]'),
+                  eye: grab('member_eye[]'),
+                  clothing: grab('member_clothing[]'),
+                  features: grab('member_features[]'),
+                  skills: grab('member_skills[]'),
+                });
+
+                appendMemberFiles(card, 'member_photos[]', `${memberKey}_photos`, memberName);
+                appendMemberFiles(card, 'member_videos[]', `${memberKey}_videos`, memberName);
+              });
+
+              if (members.length) {
+                formData.append('members', JSON.stringify(members));
+              }
+            };
+
+            collectBaseFields();
+            collectMembers();
+
             const response = await fetch(webhookUrl, {
               method: 'POST',
               body: formData,
