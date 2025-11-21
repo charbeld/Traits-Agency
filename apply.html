@@ -33,10 +33,6 @@
           <div class="form-card">
             <p class="eyebrow">Apply now</p>
             <h1>List your Traits</h1>
-            <p>
-              Drop your details and a quick note about your availability. We review every profile and
-              respond with curated opportunities.
-            </p>
 
             <form
               id="application-form"
@@ -47,15 +43,27 @@
             >
               <div class="form-grid two-column">
                 <label>
-                  Full Name *
-                  <input type="text" name="name" required placeholder="Jordan Stone" />
+                  <span class="field-label">
+                    First Name <span class="required-star">*</span>
+                  </span>
+                  <input type="text" name="first_name" required placeholder="Jordan" />
                 </label>
                 <label>
-                  Date of Birth *
+                  <span class="field-label">
+                    Last Name <span class="required-star">*</span>
+                  </span>
+                  <input type="text" name="last_name" required placeholder="Stone" />
+                </label>
+                <label>
+                  <span class="field-label">
+                    Date of Birth <span class="required-star">*</span>
+                  </span>
                   <input type="date" name="dob" required />
                 </label>
                 <label>
-                  Gender *
+                  <span class="field-label">
+                    Gender <span class="required-star">*</span>
+                  </span>
                   <select name="gender" required>
                     <option value="" disabled selected>Select gender</option>
                     <option value="female">Female</option>
@@ -63,7 +71,9 @@
                   </select>
                 </label>
                 <label>
-                  Nationality *
+                  <span class="field-label">
+                    Nationality <span class="required-star">*</span>
+                  </span>
                   <input
                     type="text"
                     name="nationality"
@@ -73,15 +83,21 @@
                   />
                 </label>
                 <label>
-                  Contact Number *
-                  <input type="tel" name="phone" required placeholder="+961 12 345 678" />
+                  <span class="field-label">
+                    Contact Number <span class="required-star">*</span>
+                  </span>
+                  <input type="tel" name="phone" required placeholder="+971 50 123 4567" />
                 </label>
                 <label>
-                  Email Address *
+                  <span class="field-label">
+                    Email Address <span class="required-star">*</span>
+                  </span>
                   <input type="email" name="email" required placeholder="name@example.com" />
                 </label>
                 <label>
-                  Current Location / City *
+                  <span class="field-label">
+                    Current Location / City <span class="required-star">*</span>
+                  </span>
                   <input
                     type="text"
                     name="location"
@@ -91,7 +107,9 @@
                   />
                 </label>
                 <div class="language-select">
-                  <span class="language-select-label">Languages Spoken *</span>
+                  <span class="language-select-label field-label">
+                    Languages Spoken <span class="required-star">*</span>
+                  </span>
                   <div class="language-select-input" tabindex="0" role="combobox" aria-expanded="false">
                     <div class="language-select-tags" aria-live="polite"></div>
                     <span class="language-select-placeholder">Choose languages</span>
@@ -150,11 +168,15 @@
                   <input type="hidden" name="languages" required />
                 </div>
                 <label>
-                  Height *
+                  <span class="field-label">
+                    Height <span class="required-star">*</span>
+                  </span>
                   <input type="text" name="height" required placeholder="175 cm" />
                 </label>
                 <label>
-                  Weight *
+                  <span class="field-label">
+                    Weight <span class="required-star">*</span>
+                  </span>
                   <input type="text" name="weight" required placeholder="60 kg" />
                 </label>
                 <label>
@@ -176,7 +198,9 @@
                   />
                 </label>
                 <label>
-                  Clothing Size (Shirt, Pants, Shoes) *
+                  <span class="field-label">
+                    Clothing Size (Shirt, Pants, Shoes) <span class="required-star">*</span>
+                  </span>
                   <input
                     type="text"
                     name="clothing_size"
@@ -201,14 +225,18 @@
               </label>
 
               <div class="drop-group">
-                <span>Upload Photos (Headshot, Full Body) *</span>
+                <span class="field-label">
+                  Upload Photos (Headshot, Full Body) <span class="required-star">*</span>
+                </span>
                 <label class="dropzone">
                   <input type="file" name="photos" accept="image/*" multiple required />
                   <span class="dropzone-text">Drag & drop images here or click to upload</span>
                 </label>
               </div>
               <div class="drop-group">
-                <span>Upload Videos (acting reel, performance, social media) *</span>
+                <span class="field-label">
+                  Upload Videos (acting reel, performance, social media) <span class="required-star">*</span>
+                </span>
                 <label class="dropzone">
                   <input type="file" name="videos" accept="video/*" multiple required />
                   <span class="dropzone-text">Drag & drop videos here or click to upload</span>
@@ -260,15 +288,27 @@
                   </div>
                   <div class="member-grid form-grid two-column">
                     <label>
-                      Full Name *
-                      <input type="text" name="member_name[]" required placeholder="Alex Taylor" />
+                      <span class="field-label">
+                        First Name <span class="required-star">*</span>
+                      </span>
+                      <input type="text" name="member_first_name[]" required placeholder="Alex" />
                     </label>
                     <label>
-                      Date of Birth *
+                      <span class="field-label">
+                        Last Name <span class="required-star">*</span>
+                      </span>
+                      <input type="text" name="member_last_name[]" required placeholder="Taylor" />
+                    </label>
+                    <label>
+                      <span class="field-label">
+                        Date of Birth <span class="required-star">*</span>
+                      </span>
                       <input type="date" name="member_dob[]" required />
                     </label>
                     <label>
-                      Gender *
+                      <span class="field-label">
+                        Gender <span class="required-star">*</span>
+                      </span>
                       <select name="member_gender[]" required>
                         <option value="" disabled selected>Select gender</option>
                         <option value="female">Female</option>
@@ -276,19 +316,27 @@
                       </select>
                     </label>
                     <label>
-                      Relation to applicant *
+                      <span class="field-label">
+                        Relation to applicant <span class="required-star">*</span>
+                      </span>
                       <input type="text" name="member_relation[]" required placeholder="Sibling" />
                     </label>
                     <label>
-                      Contact Number *
-                      <input type="tel" name="member_phone[]" required placeholder="+961 12 345 678" />
+                      <span class="field-label">
+                        Contact Number <span class="required-star">*</span>
+                      </span>
+                      <input type="tel" name="member_phone[]" required placeholder="+971 50 123 4567" />
                     </label>
                     <label>
-                      Email Address *
+                      <span class="field-label">
+                        Email Address <span class="required-star">*</span>
+                      </span>
                       <input type="email" name="member_email[]" required placeholder="name@example.com" />
                     </label>
                     <label>
-                      Nationality *
+                      <span class="field-label">
+                        Nationality <span class="required-star">*</span>
+                      </span>
                       <input
                         type="text"
                         name="member_nationality[]"
@@ -298,7 +346,9 @@
                       />
                     </label>
                     <label>
-                      Current Location / City *
+                      <span class="field-label">
+                        Current Location / City <span class="required-star">*</span>
+                      </span>
                       <input
                         type="text"
                         name="member_location[]"
@@ -308,7 +358,9 @@
                       />
                     </label>
                     <div class="language-select">
-                      <span class="language-select-label">Languages Spoken *</span>
+                      <span class="language-select-label field-label">
+                        Languages Spoken <span class="required-star">*</span>
+                      </span>
                       <div class="language-select-input" tabindex="0" role="combobox" aria-expanded="false">
                         <div class="language-select-tags" aria-live="polite"></div>
                         <span class="language-select-placeholder">Choose languages</span>
@@ -367,11 +419,15 @@
                       <input type="hidden" name="member_languages[]" required />
                     </div>
                     <label>
-                      Height *
+                      <span class="field-label">
+                        Height <span class="required-star">*</span>
+                      </span>
                       <input type="text" name="member_height[]" required placeholder="150 cm" />
                     </label>
                     <label>
-                      Weight *
+                      <span class="field-label">
+                        Weight <span class="required-star">*</span>
+                      </span>
                       <input type="text" name="member_weight[]" required placeholder="45 kg" />
                     </label>
                     <label>
@@ -415,14 +471,18 @@
                     ></textarea>
                   </label>
                   <div class="drop-group member-media">
-                    <span>Upload Photos for this member *</span>
+                    <span class="field-label">
+                      Upload Photos for this member <span class="required-star">*</span>
+                    </span>
                     <label class="dropzone">
                       <input type="file" name="member_photos[]" accept="image/*" multiple required />
                       <span class="dropzone-text">Drag & drop images here or click to upload</span>
                     </label>
                   </div>
                     <div class="drop-group member-media">
-                    <span>Upload Videos for this member *</span>
+                    <span class="field-label">
+                      Upload Videos for this member <span class="required-star">*</span>
+                    </span>
                     <label class="dropzone">
                       <input type="file" name="member_videos[]" accept="video/*" multiple required />
                       <span class="dropzone-text">Drag & drop videos here or click to upload</span>
@@ -435,7 +495,8 @@
                 <input type="checkbox" name="consent" required />
                 <span>
                   I agree to be contacted by Traits Agency for casting opportunities and understand my
-                  information will be used solely for agency purposes.
+                  information will be used solely for agency purposes
+                  <span class="required-star">*</span>
                 </span>
               </label>
 
@@ -1046,11 +1107,16 @@
               const cards = Array.from(form.querySelectorAll('.family-member'));
               cards.forEach((card, index) => {
                 const grab = (name) => card.querySelector(`[name="${name}"]`)?.value?.trim() || '';
-                const memberName = grab('member_name[]') || `Member ${index + 1}`;
+                const memberFirstName = grab('member_first_name[]');
+                const memberLastName = grab('member_last_name[]');
+                const memberFullName = `${memberFirstName} ${memberLastName}`.trim();
+                const memberLabel = memberFullName || `Member ${index + 1}`;
                 const memberKey = `member_${index + 1}`;
 
                 members.push({
-                  name: memberName,
+                  name: memberLabel,
+                  first_name: memberFirstName,
+                  last_name: memberLastName,
                   dob: grab('member_dob[]'),
                   gender: grab('member_gender[]'),
                   relation: grab('member_relation[]'),
@@ -1068,8 +1134,8 @@
                   skills: grab('member_skills[]'),
                 });
 
-                appendMemberFiles(card, 'member_photos[]', `${memberKey}_photos`, memberName);
-                appendMemberFiles(card, 'member_videos[]', `${memberKey}_videos`, memberName);
+                appendMemberFiles(card, 'member_photos[]', `${memberKey}_photos`, memberLabel);
+                appendMemberFiles(card, 'member_videos[]', `${memberKey}_videos`, memberLabel);
               });
 
               if (members.length) {

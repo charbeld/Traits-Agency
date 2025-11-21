@@ -457,6 +457,17 @@ body {
   flex: 1;
 }
 
+.field-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.required-star {
+  color: #d62828;
+  margin-left: 0.15rem;
+}
+
 .field-hint {
   display: block;
   margin-top: 0.35rem;
@@ -495,6 +506,10 @@ body {
   flex-wrap: wrap;
   gap: 0.35rem;
   flex: 1;
+}
+
+.language-select-tags:empty {
+  display: none;
 }
 
 .language-select-placeholder {
