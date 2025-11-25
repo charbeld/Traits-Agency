@@ -39,16 +39,23 @@
             </p>
 
             <form class="form-grid" action="#" method="post">
-              <label>
-                Full name
+              <label class="required-field">
+                <span class="field-label"
+                  >Full name <span class="required-indicator" aria-hidden="true">*</span></span
+                >
                 <input type="text" name="name" required placeholder="Morgan Lee" />
               </label>
-              <label>
-                Email
+              <label class="required-field">
+                <span class="field-label"
+                  >Email <span class="required-indicator" aria-hidden="true">*</span></span
+                >
                 <input type="email" name="email" required placeholder="morgan@example.com" />
               </label>
-              <label>
-                Phone number
+              <label class="required-field">
+                <span class="field-label"
+                  >Phone number
+                  <span class="required-indicator" aria-hidden="true">*</span></span
+                >
                 <input
                   type="tel"
                   name="phone"
@@ -58,12 +65,22 @@
                   title="Enter a phone number that starts with +971"
                 />
               </label>
-              <label>
-                Company / Project
-                <input type="text" name="company" placeholder="Independent director / Brand name" />
+              <label class="required-field">
+                <span class="field-label"
+                  >Company / Project
+                  <span class="required-indicator" aria-hidden="true">*</span></span
+                >
+                <input
+                  type="text"
+                  name="company"
+                  required
+                  placeholder="Independent director / Brand name"
+                />
               </label>
-              <label>
-                Message
+              <label class="required-field">
+                <span class="field-label"
+                  >Message <span class="required-indicator" aria-hidden="true">*</span></span
+                >
                 <textarea name="message" required placeholder="Tell us how we can collaborate."></textarea>
               </label>
               <button type="submit" class="btn btn-primary">Send message</button>

@@ -308,6 +308,18 @@ body {
   gap: 0.4rem;
 }
 
+.form-grid label .field-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.required-indicator {
+  color: #c1121f;
+  font-size: 1rem;
+  line-height: 1;
+}
+
 .form-grid input,
 .form-grid textarea,
 .form-grid select {
