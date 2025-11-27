@@ -479,7 +479,7 @@
                       <span class="dropzone-text">Drag & drop images here or click to upload</span>
                     </label>
                   </div>
-                    <div class="drop-group member-media">
+                  <div class="drop-group member-media">
                     <span class="field-label">
                       Upload Videos for this member <span class="required-star">*</span>
                     </span>
@@ -488,6 +488,22 @@
                       <span class="dropzone-text">Drag & drop videos here or click to upload</span>
                     </label>
                   </div>
+                  <label>
+                    For veiled women: are you ok to be featured without veil?
+                    <select name="member_veil_preference[]">
+                      <option value="" selected disabled>Select an option</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+                    </select>
+                  </label>
+                  <label>
+                    Are you available for casting calls on short notice?
+                    <select name="member_short_notice[]">
+                      <option value="" selected disabled>Select an option</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+                    </select>
+                  </label>
                 </div>
               </template>
 
@@ -1102,11 +1118,11 @@
             };
 
             const collectMembers = () => {
-              const members = [];
-              const cards = Array.from(form.querySelectorAll('.family-member'));
-              cards.forEach((card, index) => {
-                const grab = (name) => card.querySelector(`[name="${name}"]`)?.value?.trim() || '';
-                const memberFirstName = grab('member_first_name[]');
+                const members = [];
+                const cards = Array.from(form.querySelectorAll('.family-member'));
+                cards.forEach((card, index) => {
+                  const grab = (name) => card.querySelector(`[name="${name}"]`)?.value?.trim() || '';
+                  const memberFirstName = grab('member_first_name[]');
                 const memberLastName = grab('member_last_name[]');
                 const memberFullName = `${memberFirstName} ${memberLastName}`.trim();
                 const memberLabel = memberFullName || `Member ${index + 1}`;
@@ -1123,6 +1139,8 @@
                   email: grab('member_email[]'),
                   nationality: grab('member_nationality[]'),
                   location: grab('member_location[]'),
+                  veil_preference: grab('member_veil_preference[]'),
+                  short_notice: grab('member_short_notice[]'),
                   languages: grab('member_languages[]'),
                   height: grab('member_height[]'),
                   weight: grab('member_weight[]'),
