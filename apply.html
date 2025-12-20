@@ -788,7 +788,7 @@
             <div class="form-status" data-form-status role="status" aria-live="polite" hidden></div>
 
             <p class="form-footnote">
-              Prefer to speak with a producer? <a href="contact.html">Contact us directly.</a>
+              Prefer to speak with a casting professional? <a href="contact.html">Contact us.</a>
             </p>
           </div>
         </section>
@@ -1170,7 +1170,10 @@
             if (!response.ok) {
               throw new Error(`Webhook responded with status ${response.status}`);
             }
-            setStatus('Thank you! Your application has been delivered to our producers.', 'success');
+            setStatus(
+              'Thank you! Your application has been delivered to our casting professionals.',
+              'success'
+            );
             form.reset();
             resetUi();
           } catch (error) {
