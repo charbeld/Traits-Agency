@@ -98,8 +98,13 @@
       </main>
 
       <footer class="page-footer">
-        <small>&copy; 2025 Traits Agency. All rights reserved.</small>
+        <small>&copy; <span data-current-year>2025</span> Traits Agency. All rights reserved.</small>
       </footer>
     </div>
+    <script>
+      document.querySelectorAll('[data-current-year]').forEach((yearEl) => {
+        yearEl.textContent = new Date().getFullYear();
+      });
+    </script>
   </body>
 </html>
