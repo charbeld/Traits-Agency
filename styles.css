@@ -142,6 +142,7 @@ body {
   font-size: clamp(1.62rem, 2.38vw, 2.28rem);
   margin: 0.5rem 0;
   letter-spacing: 0.03em;
+  transform: translateX(-0.4rem);
 }
 
 .hero p {
@@ -811,6 +812,7 @@ body {
     white-space: nowrap;
     text-wrap: nowrap;
     text-align: center;
+    transform: none;
   }
 
   .hero-nav {
