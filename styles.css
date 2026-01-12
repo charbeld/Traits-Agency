@@ -128,7 +128,13 @@ body {
   position: relative;
   z-index: 2;
   width: 100%;
-  text-align: center;
+  text-align: left;
+}
+
+@media (max-width: 960px) {
+  .hero-inner {
+    text-align: center;
+  }
 }
 
 .hero h1 {
