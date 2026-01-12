@@ -129,7 +129,7 @@ body {
 
 .hero h1 {
   font-family: 'Playfair Display', 'Times New Roman', serif;
-  font-size: clamp(2.4rem, 3.5vw, 3.4rem);
+  font-size: clamp(2.1rem, 3.1vw, 3rem);
   margin: 0.5rem 0;
   letter-spacing: 0.03em;
 }
@@ -727,6 +727,11 @@ body {
   .hero {
     margin: 2rem 1.5rem;
     padding: 5rem 2rem 3rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
+    letter-spacing: 0.02em;
   }
 
   .hero-nav {
