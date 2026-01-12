@@ -31,7 +31,7 @@
         </nav>
 
         <section class="hero" aria-labelledby="hero-title">
-          <video class="hero-video" autoplay muted loop playsinline>
+          <video class="hero-video" autoplay muted loop playsinline preload="auto">
             <source src="logo animation.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -79,6 +79,13 @@
       document.querySelectorAll('[data-current-year]').forEach((yearEl) => {
         yearEl.textContent = new Date().getFullYear();
       });
+      const heroVideo = document.querySelector('.hero-video');
+      if (heroVideo) {
+        const playAttempt = heroVideo.play();
+        if (playAttempt && typeof playAttempt.catch === 'function') {
+          playAttempt.catch(() => {});
+        }
+      }
     </script>
   </body>
 </html>
