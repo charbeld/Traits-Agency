@@ -298,6 +298,10 @@ body {
   display: block;
 }
 
+.footer-contact-icon * {
+  stroke-width: 1.2;
+}
+
 .footer-contact-icon--phone {
   transform: none;
 }
