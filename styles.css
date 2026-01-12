@@ -135,10 +135,6 @@ body {
   .hero-inner {
     text-align: center;
   }
-
-  .hero h1 {
-    transform: none;
-  }
 }
 
 .hero h1 {
@@ -816,6 +812,7 @@ body {
     white-space: nowrap;
     text-wrap: nowrap;
     text-align: center;
+    transform: none;
   }
 
   .hero-nav {
