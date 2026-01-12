@@ -135,6 +135,10 @@ body {
   .hero-inner {
     text-align: center;
   }
+
+  .hero h1 {
+    transform: none;
+  }
 }
 
 .hero h1 {
@@ -308,8 +312,8 @@ body {
 }
 
 .footer-contact-icon-img {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   object-fit: contain;
   filter: brightness(0.00001);
 }
@@ -812,7 +816,6 @@ body {
     white-space: nowrap;
     text-wrap: nowrap;
     text-align: center;
-    transform: none;
   }
 
   .hero-nav {
