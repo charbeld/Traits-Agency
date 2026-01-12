@@ -129,7 +129,7 @@ body {
 
 .hero h1 {
   font-family: 'Playfair Display', 'Times New Roman', serif;
-  font-size: clamp(1.95rem, 2.9vw, 2.8rem);
+  font-size: clamp(1.17rem, 1.74vw, 1.68rem);
   margin: 0.5rem 0;
   letter-spacing: 0.03em;
 }
@@ -730,7 +730,7 @@ body {
   }
 
   .hero h1 {
-    font-size: clamp(1.55rem, 6.4vw, 2.05rem);
+    font-size: clamp(0.93rem, 3.84vw, 1.23rem);
     letter-spacing: 0.02em;
   }
 
