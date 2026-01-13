@@ -128,12 +128,16 @@ body {
   position: relative;
   z-index: 2;
   width: 100%;
-  text-align: center;
+  text-align: left;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
   .hero-inner {
     text-align: center;
+  }
+
+  .hero h1 {
+    transform: none;
   }
 }
 
@@ -142,6 +146,7 @@ body {
   font-size: clamp(1.62rem, 2.38vw, 2.28rem);
   margin: 0.5rem 0;
   letter-spacing: 0.03em;
+  transform: translateX(-0.4rem);
 }
 
 .hero p {
