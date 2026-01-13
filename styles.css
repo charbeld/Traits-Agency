@@ -807,7 +807,7 @@ body {
 
   .hero {
     margin: 2rem 1.5rem;
-    padding: 5rem 2rem 1.2rem;
+    padding: 5rem 2rem 2.2rem;
   }
 
   .hero h1 {
@@ -817,6 +817,13 @@ body {
     text-wrap: nowrap;
     text-align: center;
     transform: none;
+    margin: 0;
+  }
+
+  .hero-inner {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
   }
 
   .hero-nav {
