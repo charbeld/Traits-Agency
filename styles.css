@@ -142,7 +142,7 @@ body {
 }
 
 .hero h1 {
-  font-family: 'Prata', 'Times New Roman', serif;
+  font-family: inherit;
   font-size: clamp(1.62rem, 2.38vw, 2.28rem);
   margin: 0.5rem 0;
   letter-spacing: 0.03em;
