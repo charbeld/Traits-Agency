@@ -237,8 +237,16 @@
                   Upload Videos (acting reel, performance, social media)
                 </span>
                 <label class="dropzone">
-                  <input type="file" name="videos" accept="video/*" multiple />
-                  <span class="dropzone-text">Drag & drop videos here or click to upload</span>
+                  <input
+                    type="file"
+                    name="videos"
+                    accept="video/*"
+                    data-max-files="1"
+                    data-max-size-mb="100"
+                  />
+                  <span class="dropzone-text">
+                    Drag & drop 1 video here (max 100 MB) or click to upload
+                  </span>
                 </label>
               </div>
 
@@ -884,6 +892,32 @@
           const text = zone.querySelector('.dropzone-text');
           if (!input || !text) return;
           const defaultText = text.textContent;
+          const maxFiles = Number.parseInt(input.dataset.maxFiles || '', 10);
+          const maxSizeMb = Number.parseInt(input.dataset.maxSizeMb || '', 10);
+          const maxSizeBytes = Number.isFinite(maxSizeMb) ? maxSizeMb * 1024 * 1024 : null;
+
+          const validateFiles = (files) => {
+            if (!files || !files.length) {
+              input.setCustomValidity('');
+              return true;
+            }
+
+            if (Number.isFinite(maxFiles) && files.length > maxFiles) {
+              input.setCustomValidity(`Please upload a maximum of ${maxFiles} video file.`);
+              return false;
+            }
+
+            if (maxSizeBytes !== null) {
+              const tooLargeFile = Array.from(files).find((file) => file.size > maxSizeBytes);
+              if (tooLargeFile) {
+                input.setCustomValidity(`Each video must be ${maxSizeMb} MB or smaller.`);
+                return false;
+              }
+            }
+
+            input.setCustomValidity('');
+            return true;
+          };
 
           const updateText = () => {
             if (input.files && input.files.length) {
@@ -893,7 +927,15 @@
             }
           };
 
-          input.addEventListener('change', updateText);
+          input.addEventListener('change', () => {
+            if (!validateFiles(input.files)) {
+              input.value = '';
+              text.textContent = defaultText;
+              input.reportValidity();
+              return;
+            }
+            updateText();
+          });
 
           ['dragenter', 'dragover'].forEach((eventName) => {
             zone.addEventListener(eventName, (e) => {
@@ -917,12 +959,19 @@
             zone.classList.remove('is-dragover');
             if (e.dataTransfer.files.length) {
               input.files = e.dataTransfer.files;
+              if (!validateFiles(input.files)) {
+                input.value = '';
+                text.textContent = defaultText;
+                input.reportValidity();
+                return;
+              }
               updateText();
             }
           });
 
           zone.addEventListener('dropzone:reset', () => {
             zone.classList.remove('is-dragover');
+            input.setCustomValidity('');
             input.value = '';
             text.textContent = defaultText;
           });
